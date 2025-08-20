@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Resume Analyzer</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; line-height: 1.6; }
+        .container { background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input[type="file"] { margin-bottom: 10px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        .result-box { margin-top: 20px; border-top: 2px solid #ccc; padding-top: 20px; }
+        #loading { display: none; color: #555; }
+        .score { font-size: 2em; color: green; font-weight: bold; }
+        ul { list-style-type: none; padding-left: 0; }
+        ul li::before { content: '✔️'; color: green; display: inline-block; width: 1em; margin-left: -1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ATS Resume Analyzer</h1>
+        <p>Upload your resume (.docx format) to get an ATS score and improvement suggestions.</p>
+        
+        <form id="uploadForm">
+            <input type="file" name="resume" accept=".docx" required>
+            <button type="submit">Analyze Resume</button>
+        </form>
+        
+        <div id="loading">Analyzing... Please wait.</div>
+        
+        <div id="results" class="result-box" style="display:none;">
+            <h2>Analysis Results</h2>
+            <p>ATS Score: <span id="atsScore" class="score"></span>/100</p>
+            
+            <h3>Suggestions for Improvement</h3>
+            <ul id="suggestionsList"></ul>
+            
+            <button id="downloadBtn" style="display: none;">Download Updated Resume</button>
+        </div>
+        
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    
+</body>
+</html>
